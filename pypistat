@@ -1,0 +1,3 @@
+#!/bin/bash
+FNAME=`python /home/mirror/bin/pypistat.py /home/mirror/log/_http_pypi/access.log /home/mirror/log/_http_pypi/access.log.1 /home/mirror/log/_http_pypi/access.log.2`
+bzip2 $FNAME
