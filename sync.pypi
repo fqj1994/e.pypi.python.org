@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#Configuation
+PEP381CLIENT_DIR="/usr/local/bin/"
+PYPI_TARGET="/mirror/_pypi/"
+LOGDIR="/home/mirror/log/pypi/"
+LOG_ROOT_DIR="/home/mirror/log/"
+
+if ps aux | grep pep381run | grep -v grep; then
+	echo 'Already Running' > $LOGDIR/pypi.log.$TIMESTAMP
+else
+	#Synchronize
+	/home/mirror/bin/mkstatus.pypi syncing
+	/home/mirror/bin/sumstatus  $LOG_ROOT_DIR
+	TIMESTAMP=`date +%s`
+	if python -u "$PEP381CLIENT_DIR/pep381run" "$PYPI_TARGET" > $LOGDIR/pypi.log.$TIMESTAMP 2>&1; then
+		/home/mirror/bin/mkstatus.pypi success
+	else
+		/home/mirror/bin/mkstatus.pypi failed
+	fi
+
+	/home/mirror/bin/sumstatus  $LOG_ROOT_DIR
+fi

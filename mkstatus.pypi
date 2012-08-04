@@ -1,0 +1,16 @@
+#!/bin/bash
+LOGDIR="/home/mirror/log/pypi/"
+PYPI_TARGET="/mirror/_pypi/"
+
+STATUS=$1
+if [ "$STATUS" == "success" ]; then
+	# XXX Size calculation uses du. This might cause problems.
+	#SIZE=`du -sh $PYPI_TARGET | awk '{ print $1 }'`
+	SIZE='-'
+	TIMESTAMP=`date +%s`
+	#FILECOUNT=`find $PYPI_TARGET | wc -l`
+	FILECOUNT='-'
+	echo "$STATUS,$TIMESTAMP,$FILECOUNT,0,$SIZE,0,0,0,0,0,0,0,0" > "$LOGDIR/status.txt"
+else
+	sed -i -e "s/^[^,]*\(,.*\)/$STATUS\1/g" "$LOGDIR/status.txt"
+fi
