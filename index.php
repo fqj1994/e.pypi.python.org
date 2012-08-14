@@ -13,65 +13,70 @@ Network Connection:<br/>
 IPv6 : 1 Gbps<br/>
 IPv4 : 1 Gbps (Inside Tsinghua), &gt;= 100 Mbps (Outside Tsinghua)
 <hr/>
+Notifications to Users Inside Tsinghua University:<br/>
+Please use <i>pypi.tuna.tsinghua.edu.cn</i> instead of <i>e.pypi.python.org</i>
+because <i>pypi.tuna.tsinghua.edu.cn</i> will resolve a TUNET IP address for you, but 
+<i>e.pypi.python.org</i> won&#039;t.
+<hr/>
 <?php
 function formatSeconds($secs) {
-	$secs = (int)$secs;
-	if ( $secs === 0 ) {
-		return '0 second';
-	}
-	$mins  = 0;
-	$hours = 0;
-	$days  = 0;
-	$weeks = 0;
-	if ( $secs >= 60 ) {
-		$mins = (int)($secs / 60);
-		$secs = $secs % 60;
-	}
-	if ( $mins >= 60 ) {
-		$hours = (int)($mins / 60);
-		$mins = $mins % 60;
-	}
-	if ( $hours >= 24 ) {
-		$days = (int)($hours / 24);
-		$hours = $hours % 24;
-	}
-	if ( $days >= 7 ) {
-		$weeks = (int)($days / 7);
-		$days = $days % 7;
-	}
-	$result = '';
-	if ( $weeks ) {
-		if ( $weeks > 1 )
-			$result .= "{$weeks} weeks ";
-		else
-			$result .= "{$weeks} week ";
-	}
-	if ( $days ) {
-		if ( $days > 1 )
-			$result .= "{$days} days ";
-		else
-			$result .= "{$days} day ";
-	}
-	if ( $hours ) {
-		if ( $hours > 1 )
-			$result .= "{$hours} hours ";
-		else
-			$result .= "{$hours} hour ";
-	}
-	if ( $mins ) {
-		if ( $mins > 1 )
-			$result .= "{$mins} minutes ";
-		else
-			$result .= "{$mins} minute ";
-	}
-	if ( $secs ) {
-		if ( $secs > 1 )
-			$result .= "{$secs} seconds ";
-		else
-			$result .= "{$secs} second ";
-	}
-	$result = rtrim($result);
-	return $result;
+    $secs = (int)$secs;
+    if ( $secs === 0 ) {
+        return '0 second';
+    }
+    $mins  = 0;
+    $hours = 0;
+    $days  = 0;
+    $weeks = 0;
+    if ( $secs >= 60 ) {
+        $mins = (int)($secs / 60);
+        $secs = $secs % 60;
+    }
+    if ( $mins >= 60 ) {
+        $hours = (int)($mins / 60);
+        $mins = $mins % 60;
+    }
+    if ( $hours >= 24 ) {
+        $days = (int)($hours / 24);
+        $hours = $hours % 24;
+    }
+    if ( $days >= 7 ) {
+        $weeks = (int)($days / 7);
+        $days = $days % 7;
+    }
+    $result = '';
+    if ( $weeks ) {
+        if ( $weeks > 1 )
+            $result .= "{$weeks} weeks ";
+        else
+            $result .= "{$weeks} week ";
+    }
+    if ( $days ) {
+        if ( $days > 1 )
+            $result .= "{$days} days ";
+        else
+            $result .= "{$days} day ";
+    }
+    if ( $hours ) {
+        if ( $hours > 1 )
+            $result .= "{$hours} hours ";
+        else
+            $result .= "{$hours} hour ";
+    }
+    if ( $mins ) {
+        if ( $mins > 1 )
+            $result .= "{$mins} minutes ";
+        else
+            $result .= "{$mins} minute ";
+    }
+    if ( $secs ) {
+        if ( $secs > 1 )
+            $result .= "{$secs} seconds ";
+        else
+            $result .= "{$secs} second ";
+    }
+    $result = rtrim($result);
+    return $result;
 }
 ?>
 Synchronization Status:<br/>
@@ -81,20 +86,20 @@ Current Status: <b><?php
 $s = file_get_contents("/home/mirror/log/pypi/status.txt");
 $x = explode(',', $s);
 switch ($x[0]) {
-case 'checking':
-	echo 'In maintainance';
-	break;
-case 'success':
-	echo 'Work normally';
-	break;
-case 'failed':
-	echo 'Last synchronization failed';
-	break;
-case 'syncing':
-	echo 'Synchronizing';
-	break;
-default:
-	echo 'Unknown';
+    case 'checking':
+        echo 'In maintainance';
+        break;
+    case 'success':
+        echo 'Work normally';
+        break;
+    case 'failed':
+        echo 'Last synchronization failed';
+        break;
+    case 'syncing':
+        echo 'Synchronizing';
+        break;
+    default:
+        echo 'Unknown';
 }
 ?></b>.<br/>
 <hr/>
