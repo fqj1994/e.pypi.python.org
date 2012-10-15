@@ -80,6 +80,9 @@ function formatSeconds($secs) {
 }
 ?>
 Synchronization Status:<br/>
+<?php
+date_default_timezone_set('UTC');
+?>
 Last successful synchronization took place <b><i><?php echo formatSeconds(time() - strtotime(file_get_contents("last-modified")));?></i></b>  ago.<br/>
 There are <?php echo (int)(exec("sed -n '$=' simple/index.html")) - 2; ?> packages in our mirrors.<br/>
 Current Status: <b><?php
