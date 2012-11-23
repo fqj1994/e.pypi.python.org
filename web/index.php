@@ -27,28 +27,12 @@ function in_tsinghua() {
 <?php if (in_tsinghua()) {?>
 <section>
 <h2>致清华大学校内用户</h2>
-<p>如果你在清华大学校内，请使用pypi.tuna.tsinghua.edu.cn而不是e.pypi.python.org。因为pypi.tuna.tsinghua.edu.cn将解析出TUNET的IP地址，而e.pypi.python.org不会。</p>
+<p>
+如果你在清华大学校内，请使用pypi.tuna.tsinghua.edu.cn而不是e.pypi.python.org。因为pypi.tuna.tsinghua.edu.cn将解析出TUNET的IP地址，而e.pypi.python.org不会。<br/>
+同时请<span title="架设在清华大学校园网中的过渡方案除外，如isatap.tsinghua.edu.cn" style="text-decoration: underline;">关闭teredo等IPv6的过渡方案</span>，否则可能会导致通过过渡方案访问IPv6，使用IPv4传输数据，计算不必要的IPv4流量。</p>
 </section>
 <?php }?>
 <section>
-<section>
-<h2>Quick links</h2>
-<nav>
-<ul>
-<li><a href="simple/">simple</a></li>
-<li><a href="packages/">packages</a></li>
-<li><a href="local-stats/">local-stats</a></li>
-<li><a href="serversig/">serversig</a></li>
-</ul>
-</nav>
-</section>
-<section>
-<h2>Network connection</h2>
-<ul>
-<li>IPv6 : 1 Gbps</li>
-<li>IPv4 : 1 Gbps (Inside Tsinghua), &gt;= 100 Mbps (Outside Tsinghua)</li>
-</ul>
-</section>
 <?php
 function formatSeconds($secs) {
     $secs = (int)$secs;
@@ -110,6 +94,38 @@ function formatSeconds($secs) {
     return $result;
 }
 ?>
+<section>
+<h2>How to use it 如何使用</h2>
+<p>
+Please set your index-url to one of the following:<br/>
+请将你的index-url设置成下面两个之一
+</p>
+<hr/>
+<ul>
+<li>http://e.pypi.python.org/simple&nbsp;&nbsp;&nbsp;&nbsp;(Recommended for users from <strong>Outside</strong> Tsinghua University. 推荐清华大学<strong>以外</strong>的用户使用，始终解析出赛尔的IPv4和清华大学校园网的IPv6。校内用户若使用此域名解析出的IPv4地址，将计算校园网流量，使用IPv6不计。)</li>
+<hr/>
+<li>http://pypi.tuna.tsinghua.edu.cn/simple&nbsp;&nbsp;&nbsp;&nbsp;(推荐清华大学<strong>校内</strong>用户使用，根据来源解析出赛尔或者清华大学校园网的IPv4和IPv6。请务必设置你的运营商（或网络中心）<span title="清华大学用户应使用166.111.8.28作为自己的DNS服务器" style="text-decoration: underline;">推荐的DNS服务器</span>，否则可能会解析出错误的地址，导致计算不必要的流量。校内用户请<span title="架设在清华大学校园网中的过渡方案除外，如isatap.tsinghua.edu.cn" style="text-decoration: underline;">关闭teredo等IPv6过渡方案</span>，否则可能计算不必要的IPv4流量。)</li>
+</ul>
+</section>
+<section>
+<h2>Network connection</h2>
+<ul>
+<li>IPv6 : 1 Gbps</li>
+<li>IPv4 : 1 Gbps (Inside Tsinghua), &gt;= 100 Mbps (Outside Tsinghua)</li>
+</ul>
+</section>
+<section>
+<h2>Quick links</h2>
+<nav>
+<ul>
+<li><a href="simple/">simple</a></li>
+<li><a href="packages/">packages</a></li>
+<li><a href="local-stats/">local-stats</a></li>
+<li><a href="serversig/">serversig</a></li>
+</ul>
+</nav>
+</section>
+
 <section>
 <h2>Synchronization status</h2>
 <p>Last successful synchronization took place <strong><?php echo formatSeconds(time() - strtotime(file_get_contents("last-modified")));?> ago</strong></p>
