@@ -1,0 +1,59 @@
+.clearfix::after {
+  display: block;
+  clear: both;
+  content: '.';
+  height: 0;
+  visibility: hidden;
+}
+::selection {
+  background: #adf;
+}
+body {
+  background: #cdd4dc;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  margin: 0;
+}
+h1 {
+  color: #640;
+  text-align: center;
+  font-size: bold;
+}
+h2 {
+  color: #37b;
+  text-align: center;
+  text-shadow: 1px 1px 1px #000;
+}
+h3 {
+  color: #b37;
+  border-bottom: 1px solid;
+}
+.container {
+  margin: 0 auto;
+  width: 90%;
+}
+.container section {
+  float: left;
+}
+section {
+  margin: 0.5em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
+  background: #fff;
+  -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+  padding: 0.2em 2em;
+}
+footer {
+  border-top: 3px double #000;
+  text-align: center;
+  font-size: small;
+  margin-top: 2em;
+}
