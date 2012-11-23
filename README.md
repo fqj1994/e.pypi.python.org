@@ -19,13 +19,15 @@ CONTENT OF THE REPOSITORY
 
 4. sync.pypi, a shell script to call pep381client, mkstatus.pypi, and save logs.
 
-5. index.php, a PHP script of the homepage of http://e.pypi.python.org/
+5. web/, homepage used in http://e.pypi.python.org/ 
 
 LICENSE ISSUES
 --------------------------
 1. Content in thirdparty/ are published under different kinds of License, SEE 'CONTENT OF THE REPOSITORY' for more information.
 
-2. Other content are written by me, and are published under the terms of Apache License, Version 2.
+2. Content in web/ are written by [Ray Song](http://github.com/maskray) (canonical to Fangrui Song), and me. Published under the terms of Apache License, Version 2.
+
+3. Other content are written by me, and are published under the terms of Apache License, Version 2.
 
 I CAN NOT RUN YOUR SCRIPTS
 --------------------------

@@ -1,5 +1,13 @@
 <?php
 date_default_timezone_set('UTC');
+function in_tsinghua() {
+    $ip = $_SERVER['REMOTE_ADDR'];
+    if (strpos($ip, '::ffff:166.111.') === 0 || strpos($ip, '::ffff:59.66.') === 0 
+        || strpos($ip, '2402:f000') === 0 || strpos($ip, '2001:0da8:0200') === 0)
+        return TRUE;
+    else
+        return FALSE;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,6 +24,12 @@ date_default_timezone_set('UTC');
 <body>
 <div class="container clearfix">
 <h1>Welcome to mirror of Python Package Index at Tsinghua University</h1>
+<?php if (in_tsinghua()) {?>
+<section>
+<h2>致清华大学校内用户</h2>
+<p>如果你在清华大学校内，请使用pypi.tuna.tsinghua.edu.cn而不是e.pypi.python.org。因为pypi.tuna.tsinghua.edu.cn将解析出TUNET的IP地址，而e.pypi.python.org不会。</p>
+</section>
+<?php }?>
 <section>
 <section>
 <h2>Quick links</h2>
