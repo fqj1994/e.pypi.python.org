@@ -1,19 +1,19 @@
 #!/bin/bash
 
 #Configuation
-PEP381CLIENT_DIR="/usr/local/bin/"
-PYPI_TARGET="/mirror/_pypi/"
+SYNC_COMMAND="bandersnatch mirror"
+SYNCING_CHECK="bandersnatch"
 LOGDIR="/home/mirror/log/pypi/"
 LOG_ROOT_DIR="/home/mirror/log/"
 TIMESTAMP=`date +%s`
 
-if ps aux | grep pep381run | grep -v grep; then
-	echo 'Already Running' > $LOGDIR/pypi.log.$TIMESTAMP
+if ps aux | grep "$SYNCING_CHECK" | grep -v grep; then
+	echo 'Already Running' > /dev/null
 else
 	#Synchronize
 	/home/mirror/bin/mkstatus.pypi syncing
 	/home/mirror/bin/sumstatus  $LOG_ROOT_DIR
-	if python -u "$PEP381CLIENT_DIR/pep381run" "$PYPI_TARGET" > $LOGDIR/pypi.log.$TIMESTAMP 2>&1; then
+	if timeout 1800 python -u "$SYNC_COMMAND" > $LOGDIR/pypi.log.$TIMESTAMP 2>&1; then
 		/home/mirror/bin/mkstatus.pypi success
 	else
 		/home/mirror/bin/mkstatus.pypi failed
