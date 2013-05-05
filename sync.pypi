@@ -1,19 +1,20 @@
 #!/bin/bash
 
 #Configuation
-SYNC_COMMAND="bandersnatch mirror"
-SYNCING_CHECK="bandersnatch"
+SYNC_COMMAND="/usr/local/bin/bandersnatch"
+SYNC_COMMAND_NAME="bandersnatch"
 LOGDIR="/home/mirror/log/pypi/"
 LOG_ROOT_DIR="/home/mirror/log/"
+SYNC_COMMAND_ARGUMENTS="mirror"
 TIMESTAMP=`date +%s`
 
-if ps aux | grep "$SYNCING_CHECK" | grep -v grep; then
+if ps aux | grep "$SYNC_COMMAND_NAME" | grep -v grep; then
 	echo 'Already Running' > /dev/null
 else
 	#Synchronize
 	/home/mirror/bin/mkstatus.pypi syncing
 	/home/mirror/bin/sumstatus  $LOG_ROOT_DIR
-	if timeout 1800 python -u "$SYNC_COMMAND" > $LOGDIR/pypi.log.$TIMESTAMP 2>&1; then
+	if timeout 1800 python -u "$SYNC_COMMAND" $SYNC_COMMAND_ARGUMENTS > $LOGDIR/pypi.log.$TIMESTAMP 2>&1; then
 		/home/mirror/bin/mkstatus.pypi success
 	else
 		/home/mirror/bin/mkstatus.pypi failed
